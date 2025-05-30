@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Stock Information</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="static/assets/css/main.css" />
+</head>
+
+<body class="is-preload no-sidebar">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<div id="header-wrapper">
+			<header id="header" class="container">
+
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="/index.html">Satish Awal</a></h1>
+
+				</div>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="/index.html">Welcome</a></li>
+
+						<li><a href="/about.html">About</a></li>
+						<li><a href="/projects.html">Projects</a></li>
+						<li><a href="/weather.html">Weather</a></li>
+						<li class="current"><a href="/stock.html">Stock</a></li>
+						<li><a href="/contact.html">Contact</a></li>
+					</ul>
+				</nav>
+
+			</header>
+		</div>
+
+		<!-- Main -->
+		<div id="main-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<section class="box">
+							<h2 class="major"><span>Stock Information</span></h2>
+
+							{% if error %}
+							<div class="alert" style="background-color: #ffebee; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+								<p style="color: #c62828; margin: 0;">{{ error }}</p>
+							</div>
+							{% endif %}
+
+							{% if stock %}
+							<!-- Company Header -->
+							<div class="stock-header" style="text-align: center; margin-bottom: 30px;">
+								<h3 style="font-size: 2em; margin-bottom: 10px;">{{ stock.company_name }} ({{ stock.symbol }})</h3>
+								<p style="color: #666; font-size: 1.1em;">{{ stock.sector }}</p>
+							</div>
+
+							<!-- Main Stock Info -->
+							<div class="stock-price" style="background: #f5f5f5; border-radius: 10px; padding: 20px; margin-bottom: 20px; text-align: center;">
+								<h4 style="font-size: 3em; margin: 10px 0;">${{ stock.price }}</h4>
+								<div style="margin: 15px 0;">
+									<span style="font-size: 1.2em; color: {% if stock.change >= 0 %}#4caf50{% else %}#f44336{% endif %};">
+										{{ stock.change }} ({{ stock.percent_change }}%)
+									</span>
+								</div>
+								<p style="color: #666;">Last Updated: {{ stock.last_updated }}</p>
+							</div>
+
+							<!-- Stock Details Grid -->
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<div class="stock-detail" style="background: #fff; border-radius: 8px; padding: 15px; margin: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+										<h5 style="margin: 0; color: #666;">Volume</h5>
+										<p style="font-size: 1.2em; margin: 5px 0;">{{ stock.volume }}</p>
+									</div>
+								</div>
+								<div class="col-6 col-12-small">
+									<div class="stock-detail" style="background: #fff; border-radius: 8px; padding: 15px; margin: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+										<h5 style="margin: 0; color: #666;">Market Cap</h5>
+										<p style="font-size: 1.2em; margin: 5px 0;">{{ stock.market_cap }}</p>
+									</div>
+								</div>
+								<div class="col-6 col-12-small">
+									<div class="stock-detail" style="background: #fff; border-radius: 8px; padding: 15px; margin: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+										<h5 style="margin: 0; color: #666;">Day's Range</h5>
+										<p style="font-size: 1.2em; margin: 5px 0;">${{ stock.low }} - ${{ stock.high }}</p>
+									</div>
+								</div>
+								<div class="col-6 col-12-small">
+									<div class="stock-detail" style="background: #fff; border-radius: 8px; padding: 15px; margin: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+										<h5 style="margin: 0; color: #666;">P/E Ratio</h5>
+										<p style="font-size: 1.2em; margin: 5px 0;">{{ stock.pe_ratio }}</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- Company Description -->
+							<div class="company-info" style="background: #fff; border-radius: 8px; padding: 20px; margin-top: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+								<h5 style="color: #666;">About {{ stock.company_name }}</h5>
+								<p style="line-height: 1.6;">{{ stock.description }}</p>
+							</div>
+							{% endif %}
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div id="footer-wrapper">
+			<footer id="footer" class="container">
+				<div class="row">
+					<div class="col-3 col-6-medium col-12-small">
+						<!-- Links -->
+						<section class="widget links">
+							<h3>Quick Links</h3>
+							<ul class="style2">
+								<li><a href="/index.html">Home</a></li>
+								<li><a href="/about.html">About</a></li>
+								<li><a href="/projects.html">Projects</a></li>
+								<li><a href="/weather.html">Weather</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+						<!-- Links -->
+						<section class="widget links">
+							<h3>Blog Categories</h3>
+							<ul class="style2">
+								<li><a href="#">Technology</a></li>
+								<li><a href="#">Development</a></li>
+								<li><a href="#">Design</a></li>
+								<li><a href="#">Business</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+						<!-- Contact -->
+						<section class="widget contact">
+							<h3>Follow Us</h3>
+							<ul>
+								<li><a href="http://www.x.com/satishawal" class="icon brands fa-twitter"><span
+											class="label">Twitter</span></a></li>
+								<li><a href="http://www.facebook.com/satishawal" class="icon brands fa-facebook-f"><span
+											class="label">Facebook</span></a></li>
+								<li><a href="http://www.instagram.com/satish_awal"
+										class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="http://www.linkedin.com/in/satish-awal"
+										class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							</ul>
+						</section>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div id="copyright">
+							<ul class="menu">
+								<li>&copy; 2024 Verti. All rights reserved</li>
+								<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="static/assets/js/jquery.min.js"></script>
+	<script src="static/assets/js/jquery.dropotron.min.js"></script>
+	<script src="static/assets/js/browser.min.js"></script>
+	<script src="static/assets/js/breakpoints.min.js"></script>
+	<script src="static/assets/js/util.js"></script>
+	<script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>
