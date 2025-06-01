@@ -37,7 +37,7 @@ def weather():
     lon = -80.9930  # Sudbury longitude
     
     try:
-        url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
+        url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={Weather_API_KEY}&units=metric"
         response = requests.get(url)
         
         if response.status_code == 200:
@@ -67,7 +67,7 @@ def weather():
 @app.route('/stock.html')
 def stock():
     Stock_API_KEY = os.environ.get("Stock_API_KEY")
-    symbol = "IBM"  # Default symbol
+    symbol = "NVDA"  # Default symbol
     
     # Get intraday data
     url = f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=5min&apikey={Stock_API_KEY}"
@@ -75,7 +75,7 @@ def stock():
     intraday_data = r.json()
     
     # Get company overview
-    overview_url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={API_KEY}"
+    overview_url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={Stock_API_KEY}"
     overview_r = requests.get(overview_url)
     overview_data = overview_r.json()
     
